@@ -1,17 +1,17 @@
-const authenticate = (number, userType, appState, setAppState) => {
+const authenticate = (number, userType) => {
     // temp for testing
     if (number === "123" && userType === 1) {
-        setAppState({
-            ...appState,
-            "firstName": "Divyam",
-            "lastName": "Chadha",
-        })
-        console.log(appState)
-        return true;
+        // fetch this from db
+        let user = {
+            firstName: "Divyam",
+            lastName: "Chadha",
+        }
+
+        return user;
     }
         
     else
-        return false;
+        return null;
 };
 
 export default authenticate;

@@ -18,11 +18,13 @@ const dropdownValues = [
   ];
   
 function auth (number, userType, appState, setAppState) {
-
-    if(authenticate(number, userType, appState, setAppState)) {
+    let user = authenticate(number, userType);
+    if(user) {
         setAppState({
             ...appState,
             isAuthenticated: true,
+            firstName: user.firstName,
+            lastName: user.lastName
         })
     } else {
         console.log("no", number, userType)
