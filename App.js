@@ -11,11 +11,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // Context hooks
 import { AppStateContext, AppStateProvider } from './contexts/AppState';
+import { QueueStateProvider } from './contexts/QueueState';
 
 // Screens
 import HomeScreen from './screens/Home';
 import LoginScreen from './screens/Login';
 import OtpScreen from './screens/OTPScreen';
+import SearchScreen from './screens/SearchScreen';
 import SignupScreen from './screens/SignUp';
 
 // Create Navigators
@@ -33,9 +35,12 @@ function UnAuthenticatedApp() {
 
 function AuthenticatedApp() {
   return (
-    <Drawer.Navigator initialRouteName="Home">
-      <Drawer.Screen name="Home" component={HomeScreen} />
-    </Drawer.Navigator>
+    <QueueStateProvider>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+      </Drawer.Navigator>
+    </QueueStateProvider>
+
   )
 }
 
@@ -61,6 +66,7 @@ function AppContent() {
           )
         }
         <Stack.Screen name="OTP" component={OtpScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} />
     </Stack.Navigator>
   );
 }

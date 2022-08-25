@@ -19,7 +19,7 @@ const dropdownValues = [
   
 function auth (number, userType, appState, setAppState) {
 
-    if(authenticate(number, userType)) {
+    if(authenticate(number, userType, appState, setAppState)) {
         setAppState({
             ...appState,
             isAuthenticated: true,

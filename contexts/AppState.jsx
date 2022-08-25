@@ -2,6 +2,8 @@ import React, { createContext, useState } from "react";
 
 const initialState = {
     isAuthenticated: false,
+    firstName: "",
+    lastName: "",
 };
 
 export const AppStateContext = createContext();
