@@ -15,6 +15,7 @@ import { AppStateContext, AppStateProvider } from './contexts/AppState';
 // Screens
 import HomeScreen from './screens/Home';
 import LoginScreen from './screens/Login';
+import OtpScreen from './screens/OTPScreen';
 import SignupScreen from './screens/SignUp';
 
 // Create Navigators
@@ -59,6 +60,7 @@ function AppContent() {
             />
           )
         }
+        <Stack.Screen name="OTP" component={OtpScreen} />
     </Stack.Navigator>
   );
 }
