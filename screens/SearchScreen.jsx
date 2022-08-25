@@ -1,8 +1,17 @@
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Button } from 'react-native';
+// React and React Native Imports
 import { useState } from 'react';
+import { View, Text, StyleSheet, SafeAreaView, Pressable, FlatList, Button } from 'react-native';
+
+// React Navigation Imports
+import { useNavigation } from '@react-navigation/native';
+
+// Expo Imports
 import { Entypo } from '@expo/vector-icons';
 
+// Custom Components
 import SearchBar from '../components/SearchBar';
+
+// Source
 import { spoofQueueItem } from '../src/spoof';
 
 function NoSearchItems() {
@@ -14,11 +23,18 @@ function NoSearchItems() {
   );
 };
 
-const SearchItem = ({ title }) => (
-  <View style={styles.searchItem}>
-    <Text style={styles.searchItemText}>{title}</Text>
-  </View>
-);
+function SearchItem ({ item }) {
+  const navigation = useNavigation();
+
+    return (
+    <Pressable 
+      style={styles.searchItem}
+      onPress={() => navigation.navigate("QueueInfo", {"item": item})}
+    >
+    <Text style={styles.searchItemText}>{item.name}</Text>
+    </Pressable>
+  );
+}
 
 export default function SearchScreen( {navigation} ) {
   const [_searchPhrase, _setSearchPhrase] = useState("");
@@ -28,7 +44,7 @@ export default function SearchScreen( {navigation} ) {
     spoofQueueItem(),
   ]);
 
-  const renderItem = ({item}) => <SearchItem title={item.name}/> 
+  const renderItem = (item) => <SearchItem item={item.item}/> 
 
     return (
         

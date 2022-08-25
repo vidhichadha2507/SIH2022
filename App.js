@@ -17,6 +17,7 @@ import { QueueStateProvider } from './contexts/QueueState';
 import HomeScreen from './screens/Home';
 import LoginScreen from './screens/Login';
 import OtpScreen from './screens/OTPScreen';
+import QueueInfoScreen from './screens/QueueInfo';
 import SearchScreen from './screens/SearchScreen';
 import SignupScreen from './screens/SignUp';
 
@@ -67,6 +68,7 @@ function AppContent() {
         }
         <Stack.Screen name="OTP" component={OtpScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="QueueInfo" component={QueueInfoScreen} />
     </Stack.Navigator>
   );
 }

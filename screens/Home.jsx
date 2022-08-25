@@ -2,6 +2,9 @@
 import { useContext, useState } from 'react';
 import { View, Text, StyleSheet, Pressable, SafeAreaView, Button, FlatList, Image } from 'react-native';
 
+// React Navigation
+import { useNavigation } from '@react-navigation/native';
+
 // Expo Imports
 import { Entypo, FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 
@@ -110,16 +113,20 @@ function HomeHeader({ navigation, queueItems }) {
   )
 }
 
-const QueueItem = ({item, navigation}) => (
-  <Pressable 
+function QueueItem({item}) {
+  const navigation = useNavigation();
+  
+  return (
+    <Pressable 
     style={styles.queueItem}
-    onPress={() => console.log("Not implemented.")}
+    onPress={() => navigation.navigate("QueueInfo", {"item": item})}
   >
     <Text style={styles.queueItemText}>{item.name}</Text>
     <Text style={styles.queueItemText}>{item.waitingTime} mins</Text>
     {/*<Text style={styles.queueItemText}>{item.number}</Text>*/}
   </Pressable>
-);
+  );
+};
 
 function EmptyQueueView() {
   return (
