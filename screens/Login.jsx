@@ -7,15 +7,10 @@ import { AppStateContext } from '../contexts/AppState';
 
 // 3rd Party Imports
 import { Dropdown } from 'react-native-element-dropdown';
+import { useTranslation } from 'react-i18next';
 
 // Source code
 import authenticate from '../src/auth';
-
-const dropdownValues = [
-    { label: 'User', value: 1 },
-    { label: 'Admin', value: 2 },
-    { label: 'Super Admin', value: 3 },
-  ];
   
 function auth (number, userType, appState, setAppState) {
     let user = authenticate(number, userType);
@@ -35,6 +30,7 @@ export default function LoginScreen( { navigation } ) {
     const [appState, setAppState] = useContext(AppStateContext);
     const [number, setNumber] = useState();
     const [userType, setUserType] = useState(1);
+    const { t, i18n } = useTranslation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -42,25 +38,36 @@ export default function LoginScreen( { navigation } ) {
             <View>
 
                 <View style={styles.centerContainerHeader}>
-                    <Text style={styles.Heading}>Login</Text>
+                    <Text style={styles.Heading}>{t('Login')}</Text>
                 </View>
+
+                <Button
+                  onPress={() => i18n.changeLanguage('hi')}
+                  title="change lang"
+                />
                 
                 <View style={styles.centerContainer}>
-                    <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder="Phone Number" onChangeText={text => setNumber(text)} /></View>
+                    <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder={t('PhoneNumber')} onChangeText={text => setNumber(text)} /></View>
                 </View>
 
                 <View style={styles.dropdownContainer}>
                   { /* https://www.npmjs.com/package/react-native-element-dropdown */ }
 
                   <Dropdown 
-                    data={dropdownValues}           
+                    data={
+                      [
+                        { label: t('User'), value: 1 },
+                        { label: t('Admin'), value: 2 },
+                        { label: t('SuperAdmin'), value: 3 },
+                      ]
+                    }           
                     labelField="label"
                     valueField="value"
                     onChange={item => setUserType(item.value)}
                     style={styles.dropdown}
                     placeholder="User Type"
                     placeholderStyle={styles.dropdownPlaceholder}
-                    value={dropdownValues[0]}
+                    value={{ label: t('User'), value: 1 }}
                   />
                 </View>
 
@@ -83,7 +90,7 @@ export default function LoginScreen( { navigation } ) {
                     style={styles.buttonStyle}
                   >
 
-                      <Text>Send OTP</Text>
+                      <Text>{t('SendOTP')}</Text>
                   </Pressable>
                 </View>
 

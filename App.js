@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 
 // React and React Native Imports
 import { useContext } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Pressable, Button } from 'react-native';
 
 // React Navigation Imports
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,13 +13,20 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AppStateContext, AppStateProvider } from './contexts/AppState';
 import { QueueStateProvider } from './contexts/QueueState';
 
+// Expo Imports
+import { AntDesign } from '@expo/vector-icons';
+
 // Screens
 import HomeScreen from './screens/Home';
 import LoginScreen from './screens/Login';
 import OtpScreen from './screens/OTPScreen';
+import ProfileScreen from './screens/Profile';
 import QueueInfoScreen from './screens/QueueInfo';
 import SearchScreen from './screens/SearchScreen';
 import SignupScreen from './screens/SignUp';
+
+// Languages
+import i18n from './languages/i18n';
 
 // Create Navigators
 const Stack = createStackNavigator();
@@ -39,6 +46,7 @@ function AuthenticatedApp() {
     <QueueStateProvider>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Profile" component={ProfileScreen} />
       </Drawer.Navigator>
     </QueueStateProvider>
 
@@ -62,7 +70,11 @@ function AppContent() {
             <Stack.Screen
               name="StackHome"
               component={AuthenticatedApp}
-              options={{ headerShown: false }}
+              options={
+                { 
+                  headerShown: false,
+                }
+              }
             />
           )
         }
@@ -90,4 +102,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  profileButton: {
+    borderWidth: 0.5,
+    borderRadius: 20,
+    backgroundColor: "black"
+  }
 });

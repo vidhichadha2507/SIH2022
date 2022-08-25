@@ -11,14 +11,18 @@ import { Entypo } from '@expo/vector-icons';
 // Custom Components
 import SearchBar from '../components/SearchBar';
 
+// 3rd Party Imports
+import { useTranslation } from 'react-i18next';
+
 // Source
 import { spoofQueueItem } from '../src/spoof';
 
 function NoSearchItems() {
+  const { t, i18n } = useTranslation();
   return (
     <View style={styles.searchItemsEmpty}>
       <Entypo name="cross" size={50} color="black" />
-      <Text style={{fontSize: 18}}>No result found.</Text>
+      <Text style={{fontSize: 18}}>{t("NoResultFound")}.</Text>
     </View>
   );
 };
@@ -43,6 +47,7 @@ export default function SearchScreen( {navigation} ) {
     spoofQueueItem(),
     spoofQueueItem(),
   ]);
+  const { t, i18n } = useTranslation();
 
   const renderItem = (item) => <SearchItem item={item.item}/> 
 
@@ -56,7 +61,7 @@ export default function SearchScreen( {navigation} ) {
               setSearchPhrase={_setSearchPhrase}
               clicked={_clicked}
               setClicked={_setClicked}
-              placeholder="Find Queue" 
+              placeholder={t("FindQueue")}
             />
           </View>
 

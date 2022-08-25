@@ -5,7 +5,12 @@ import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
 // Expo Imports
 import { Feather, Entypo } from "@expo/vector-icons";
 
+// 3rd Party
+import { useTranslation } from 'react-i18next';
+
 export const SearchBarShell = ( { OnPress } ) => {
+  const { t, i18n } = useTranslation();
+
   return (
     <View style={styles.container}>
       <View style={styles.searchBar__unclicked}>
@@ -19,7 +24,7 @@ export const SearchBarShell = ( { OnPress } ) => {
         {/* Input field */}
         <TextInput
           style={styles.input}
-          placeholder="Search"
+          placeholder={t('Search')}
           onPressIn={OnPress}
           editable={false}
         />
@@ -29,6 +34,7 @@ export const SearchBarShell = ( { OnPress } ) => {
 };
 
 const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked, placeholder}) => {
+  const { t, i18n } = useTranslation();
   return (
     <View style={styles.container}>
       <View
@@ -48,7 +54,7 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked, placehol
         {/* Input field */}
         <TextInput
           style={styles.input}
-          placeholder={placeholder ? placeholder : "Search"}
+          placeholder={placeholder ? placeholder : t('Search')}
           value={searchPhrase}
           onChangeText={setSearchPhrase}
           onFocus={() => {

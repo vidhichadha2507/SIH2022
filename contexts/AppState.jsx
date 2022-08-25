@@ -4,6 +4,7 @@ const initialState = {
     isAuthenticated: false,
     firstName: "",
     lastName: "",
+    language: "en",
 };
 
 export const AppStateContext = createContext();

@@ -4,24 +4,22 @@ import { View, Text, StyleSheet, TextInput, ImageBackground, Pressable } from 'r
 
 // 3rd Party Imports
 import { Dropdown } from 'react-native-element-dropdown';
-
-const dropdownValues = [
-  { label: 'User', value: '1' },
-  { label: 'Creator', value: '2' },
-];
+import { useTranslation } from 'react-i18next';
 
 function RegisterQueueUser() {
+  const { t, i18n } = useTranslation();
+
   return (
     <View>
       <View style={styles.centerContainer}>
-        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder="First Name"/></View>
-        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder="Last Name"/></View>
-        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder="Mobile Number"/></View>
+        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder={t('FirstName')}/></View>
+        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder={t('LastName')}/></View>
+        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder={t('MobileNumber')}/></View>
       </View>
 
       <View style={styles.buttonContainer}>
         <Pressable onPress={() => console.log("create acc")} style={styles.buttonStyle}>
-          <Text>Register</Text>
+          <Text>{t('Register')}</Text>
         </Pressable>
       </View>
     </View>
@@ -29,18 +27,19 @@ function RegisterQueueUser() {
 }
 
 function RegisterQueueCreator() {
+  const { t, i18n } = useTranslation();
+
   return (
     <View>
       <View style={styles.centerContainer}>
-        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder="First Name"/></View>
-        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder="Last Name"/></View>
-        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder="Mobile Number"/></View>
-        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder="Doctor ID thingy"/></View>
+      <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder={t('FirstName')}/></View>
+        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder={t('LastName')}/></View>
+        <View style={styles.textInputView}><TextInput style={styles.textInput} placeholder={t('MobileNumber')}/></View>
       </View>
 
       <View style={styles.buttonContainer}>
         <Pressable onPress={() => console.log("create acc")} style={styles.buttonStyle}>
-          <Text>Register</Text>
+          <Text>{t('Register')}</Text>
         </Pressable>
       </View>
     </View>
@@ -49,13 +48,14 @@ function RegisterQueueCreator() {
 
 export default function SignupScreen( { navigation } ) {
   const [userType, setUserType] = useState('1');
+  const { t, i18n } = useTranslation();
 
   return (
     <View style={styles.container}>
         <ImageBackground source={require('../assets/login_bg.jpg')} resizeMode="cover" style={styles.imageBackground} imageStyle={{opacity: 0.2}}>
             <View>
                 <View style={styles.centerContainerHeader}>
-                    <Text style={styles.Heading}>Create Account</Text>
+                    <Text style={styles.Heading}>{t('CreateAccount')}</Text>
                 </View>
                 
                 <View style={styles.dropdownContainer}>
@@ -64,14 +64,17 @@ export default function SignupScreen( { navigation } ) {
                   }
 
                   <Dropdown 
-                    data={dropdownValues}           
+                    data={[
+                      { label: t('Login'), value: '1' },
+                      { label: t('Admin'), value: '2' },
+                    ]}           
                     labelField="label"
                     valueField="value"
                     onChange={item => setUserType(item.value)}
                     style={styles.dropdown}
                     placeholder="User Type"
                     placeholderStyle={styles.dropdownPlaceholder}
-                    value={dropdownValues[0]}
+                    value={{ label: t('Login'), value: '1' }}
                   />
                 </View>
                 

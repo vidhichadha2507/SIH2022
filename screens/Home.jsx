@@ -15,6 +15,9 @@ import { QueueStateContext } from '../contexts/QueueState'
 // Custom Components
 import { SearchBarShell } from '../components/SearchBar';
 
+// 3rd Party
+import { useTranslation } from 'react-i18next';
+
 // Source Code
 import { spoofQueueItem } from '../src/spoof';
 
@@ -24,16 +27,17 @@ const QueueType = {
   shops: 3
 }
 
-const getGreeting = () => {
-  var hour = new Date().getHours();
-  if(hour < 12) return "Good Morning";
-  else if(hour < 17) return "Good Afternoon";
-  else return "Good Evening";
-}
-
 function HomeHeader({ navigation, queueItems }) {
   const [appState, setAppState] = useContext(AppStateContext);
   const [queueType, setQueueType] = useState(QueueType.medical);
+  const { t, i18n } = useTranslation();
+
+  const getGreeting = () => {
+    var hour = new Date().getHours();
+    if(hour < 12) return t('GoodMorning');
+    else if(hour < 17) return t('GoodAfternoon');
+    else return t('GoodEvening');
+  }
 
   return (
     <View style={styles.HomeHeaderContainer}>
@@ -52,7 +56,7 @@ function HomeHeader({ navigation, queueItems }) {
               onPress={() => navigation.navigate("Search")}    
           >
             <MaterialIcons name="queue" size={24} color="black" />
-            <Text style={styles.HomeButtonText}>Join Queue</Text>
+            <Text style={styles.HomeButtonText}>{t('JoinQueue')}</Text>
           </Pressable>
           
           {/* Queue History Button */}  
@@ -61,7 +65,7 @@ function HomeHeader({ navigation, queueItems }) {
               onPress={() => console.log("Not implemented.")}    
           >
             <FontAwesome5 name="history" size={24} color="black" />
-            <Text style={styles.HomeButtonText}>Queue History</Text>
+            <Text style={styles.HomeButtonText}>{t('QueueHistory')}</Text>
           </Pressable>
 
         </View>
@@ -74,7 +78,7 @@ function HomeHeader({ navigation, queueItems }) {
               onPress={() => setQueueType(QueueType.medical)}
           >
                   <FontAwesome5 name="hand-holding-medical" size={24} color="black" />
-                  <Text>Medical</Text>
+                  <Text>{t('Medical')}</Text>
           </Pressable>
 
           { /* Select Bus Queue */ }
@@ -83,7 +87,7 @@ function HomeHeader({ navigation, queueItems }) {
               onPress={() => setQueueType(QueueType.bus)}
           >
                   <Ionicons name="bus" size={24} color="black" />
-                  <Text>Bus</Text>
+                  <Text>{t('Bus')}</Text>
           </Pressable>
 
           { /* Select Shop Queue */ }
@@ -92,7 +96,7 @@ function HomeHeader({ navigation, queueItems }) {
               onPress={() => setQueueType(QueueType.shops)}
           >
                   <Entypo name="shop" size={24} color="black" />
-                  <Text>Shops</Text>
+                  <Text>{t('Shops')}</Text>
           </Pressable>
 
         </View>
@@ -105,7 +109,7 @@ function HomeHeader({ navigation, queueItems }) {
         {
           queueItems.length >= 1
             ?
-          <Text style={styles.ActiveQueueHeader}>Active Queues:</Text>
+          <Text style={styles.ActiveQueueHeader}>{t('ActiveQueues')}:</Text>
             :
           <></>
         }
@@ -115,7 +119,7 @@ function HomeHeader({ navigation, queueItems }) {
 
 function QueueItem({item}) {
   const navigation = useNavigation();
-  
+
   return (
     <Pressable 
     style={styles.queueItem}
@@ -129,10 +133,11 @@ function QueueItem({item}) {
 };
 
 function EmptyQueueView() {
+  const { t, i18n } = useTranslation();
   return (
     <View style={styles.emptyQueueContainer}>
       <Entypo name="cross" size={50} color="black" />
-      <Text style={{fontSize: 18}}>You have not joined any queue.</Text>
+      <Text style={{fontSize: 18}}>{t('YouHaveNotJoinedAnyQueue')}</Text>
     </View>
   );
 };
