@@ -26,6 +26,13 @@
         "English": "English",
         "Hindi": "हिन्दी",
         "FindQueue": "Find Queue",
-        "NoResultFound": "No Result Found"
+        "NoResultFound": "No Result Found",
+        "Home": "Home",
+        "Profile": "Profile",
+        "QueueInfo": "Queue Info",
+        "ExpectedWaitingTime": "Expected Waiting Time",
+        "EstimatedQueueNumber": "Estimated Queue Number",
+        "Destination": "Destination",
+        "TraceRoute": "Trace Route"
     }
 }

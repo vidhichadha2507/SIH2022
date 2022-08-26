@@ -6,6 +6,8 @@ import Constants from 'expo-constants';
 import MapViewDirections from 'react-native-maps-directions';
 import * as Location from 'expo-location';
 
+// 3rd Party Imports
+import { useTranslation } from 'react-i18next';
 
 const {width,height}=Dimensions.get('window');
 
@@ -46,11 +48,6 @@ function InputAutocompelete({
 }
 
 
-
-
-
-
-
 export default function App() {
   const [origin,setOrigin]=(React.useState)<LatLng | null>(null);
   const [destination,setDestination]=(React.useState)<LatLng | null>();
@@ -59,6 +56,8 @@ export default function App() {
 
   const [distance,setDistance]=useState(0);
   const [duration,setDuration]=useState(0);
+
+  const { t, i18n } = useTranslation();
 
   const initial={
     latitude: 28.7041,
@@ -180,7 +179,7 @@ export default function App() {
       /> */}
       
       <InputAutocompelete 
-      label="Destination" 
+      label={t("Destination")}
       placeholder="" 
       onPlaceSelected={(details)=>{
         onPlaceSelected(details,"destination");
@@ -192,7 +191,7 @@ export default function App() {
       >
         <Text 
         style={styles.buttonText}>
-          Trace Route
+          {t("TraceRoute")}
           </Text>
       </TouchableOpacity>
       {distance&&duration?(

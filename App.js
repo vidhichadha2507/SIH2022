@@ -27,26 +27,29 @@ import SignupScreen from './screens/SignUp';
 
 // Languages
 import i18n from './languages/i18n';
+import { useTranslation } from 'react-i18next';
 
 // Create Navigators
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function UnAuthenticatedApp() {
+  const { t, i18n } = useTranslation();
   return (
-    <Drawer.Navigator initialRouteName="Login">
-      <Drawer.Screen name="Login" component={LoginScreen} />
-      <Drawer.Screen name="Sign up" component={SignupScreen} />
+    <Drawer.Navigator initialRouteName={t("Login")}>
+      <Drawer.Screen name="Login" component={LoginScreen} options={{headerShown: t("Login")}} />
+      <Drawer.Screen name="Sign Up" component={SignupScreen} options={{headerShown: t("SignUp")}}/>
     </Drawer.Navigator>
   );
 }
 
 function AuthenticatedApp() {
+  const { t, i18n } = useTranslation();
   return (
     <QueueStateProvider>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Profile" component={ProfileScreen} />
+      <Drawer.Navigator initialRouteName={"Home"}>
+        <Drawer.Screen name="Home" component={HomeScreen} options={{headerShown: t("Home")}}/>
+        <Drawer.Screen name="Profile" component={ProfileScreen} options={{headerShown: t("Profile")}}/>
       </Drawer.Navigator>
     </QueueStateProvider>
 
@@ -55,7 +58,7 @@ function AuthenticatedApp() {
 
 function AppContent() {
   const [appState, setAppState] = useContext(AppStateContext);
-  console.log(appState);
+  const { t, i18n } = useTranslation();
 
   return (
     <Stack.Navigator>
@@ -79,8 +82,8 @@ function AppContent() {
           )
         }
         <Stack.Screen name="OTP" component={OtpScreen} />
-        <Stack.Screen name="Search" component={SearchScreen} />
-        <Stack.Screen name="QueueInfo" component={QueueInfoScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} options={{headerShown: t("Search")}}/>
+        <Stack.Screen name="QueueInfo" component={QueueInfoScreen} options={{headerShown: t("QueueInfo")}}/>
     </Stack.Navigator>
   );
 }

@@ -26,6 +26,13 @@
         "English": "English",
         "Hindi": "हिन्दी",
         "FindQueue": "कतार खोजें",
-        "NoResultFound": "कोई परिणाम नहीं मिला"
+        "NoResultFound": "कोई परिणाम नहीं मिला",
+        "Home": "घर",
+        "Profile": "प्रोफ़ाइल",
+        "QueueInfo": "कतार की जानकारी",
+        "ExpectedWaitingTime": "अपेक्षित प्रतीक्षा समय",
+        "EstimatedQueueNumber": "अनुमानित कतार संख्या",
+        "Destination": "मंज़िल",
+        "TraceRoute": "ट्रेस रूट"
     }
 }

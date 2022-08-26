@@ -4,23 +4,28 @@ import { StyleSheet, SafeAreaView, Text, View } from 'react-native';
 
 // Import contexts
 import { QueueStateContext } from '../contexts/QueueState';
+
 //Map
 import Map from '../components/Map';
 
+// 3rd Party Imports
+import { useTranslation } from 'react-i18next';
+
 export default function QueueInfoScreen( { route, navigation } ) {
     const {item, otherParams} = route.params;
+    const { t, i18n } = useTranslation();
 
   return (
     <SafeAreaView style={styles.container}>
         <Text style={styles.title}>{item.name}</Text>
 
         <View style={styles.textContainer}>
-            <View style={styles.textContainerLeft}><Text>Expected waiting time:</Text></View>
+            <View style={styles.textContainerLeft}><Text>{t("ExpectedWaitingTime")}:</Text></View>
             <View style={styles.textContainerRight}><Text style={styles.text}>{item.waitingTime} mins</Text></View>
         </View>
             
         <View style={styles.textContainer}>
-            <View style={styles.textContainerLeft}><Text>Estimated queue number:</Text></View>
+            <View style={styles.textContainerLeft}><Text>{t("EstimatedQueueNumber")}:</Text></View>
             <View style={styles.textContainerRight}><Text style={styles.text}>{item.number}</Text></View>
         </View>  
         <View>
