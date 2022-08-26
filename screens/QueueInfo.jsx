@@ -4,6 +4,8 @@ import { StyleSheet, SafeAreaView, Text, View } from 'react-native';
 
 // Import contexts
 import { QueueStateContext } from '../contexts/QueueState';
+//Map
+import Map from '../components/Map';
 
 export default function QueueInfoScreen( { route, navigation } ) {
     const {item, otherParams} = route.params;
@@ -21,8 +23,9 @@ export default function QueueInfoScreen( { route, navigation } ) {
             <View style={styles.textContainerLeft}><Text>Estimated queue number:</Text></View>
             <View style={styles.textContainerRight}><Text style={styles.text}>{item.number}</Text></View>
         </View>  
-     
-
+        <View>
+            <Map />
+        </View>
     </SafeAreaView>
   );
 }
